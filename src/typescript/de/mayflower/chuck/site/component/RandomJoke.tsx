@@ -1,5 +1,7 @@
 
-    import { Button, Divider, List }          from 'antd';
+    import Button                             from 'antd/lib/button';
+    import Divider                            from 'antd/lib/divider';
+    import List                               from 'antd/lib/List';
     import * as React                         from 'react';
     import { Debug, API, RandomJokeResponse } from '../..';
 

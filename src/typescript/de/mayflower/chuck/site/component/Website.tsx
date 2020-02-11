@@ -1,6 +1,6 @@
 
     import * as React                                      from 'react';
-    import { Layout }                                      from 'antd';
+    import Layout                                          from 'antd/lib/layout';
     import { Content, Debug, MainMenu, MenuItem, Setting } from '../..';
 
     /** ****************************************************************************************************************

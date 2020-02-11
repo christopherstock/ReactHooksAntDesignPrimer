@@ -1,5 +1,5 @@
 
-    import { Layout }                      from 'antd';
+    import Layout                          from 'antd/lib/layout';
     import * as React                      from 'react';
     import { Debug, MenuItem, RandomJoke } from '../..';
 
