@@ -6,7 +6,6 @@
     /** ****************************************************************************************************************
     *   The main class contains the application's point of entry.
     *
-    *   TODO Tree shaking to lower bundle.js size! (2.5 MB).
     *   TODO Axios Request handling.
     *   TODO React Context.
     *   TODO React Hooks.
