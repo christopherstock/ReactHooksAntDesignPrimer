@@ -1,6 +1,9 @@
 
-    import { AxiosStatic } from 'axios';
+    import { AxiosStatic, AxiosResponse } from 'axios';
+
+    // TODO prune?
     const axios :AxiosStatic = require( 'axios' ).default;
+
     import { Networking, Mock, RandomJokeResponse, Setting } from '..';
 
     /** ****************************************************************************************************************
@@ -22,7 +25,6 @@
         )
         : void
         {
-/*
             if ( Setting.DEBUG_MOCK_ALL_REQUESTS )
             {
                 window.setTimeout(
@@ -33,50 +35,24 @@
                 );
                 return;
             }
-*/
 
-console.log( "Trying AXIOS lib request" );
-
-axios.get(
-    Setting.BASE_API_URL + 'jokes/random',
-    {
-        params: {
-            ID: 12345
-        }
-    }
-).then(
-    function (response)
-    {
-        console.log( "Axios Response" );
-        console.log( response );
-    }
-).catch(
-    function (error)
-    {
-        console.log( "Axios Error" );
-        console.log(error);
-    }
-);
-
-
-
-
-
-
-/*
-            Networking.fetchViaApi(
+            // perform request via Axios API
+            axios.get(
                 Setting.BASE_API_URL + 'jokes/random',
-                'GET',
-                null,
-                ( json:JSON ) => {
-                    const dto :RandomJokeResponse = json as unknown as RandomJokeResponse;
+                {
+                    params: {
+                        ID: 12345,
+                    },
+                }
+            ).then(
+                ( response:AxiosResponse ) :void => {
+                    const dto :RandomJokeResponse = response.data as RandomJokeResponse;
                     onSuccess( dto );
-                },
-                ( error:Error ) => {
+                }
+            ).catch(
+                ( error :Error ) :void => {
                     onError( error );
-                },
-                abortSignal
+                }
             );
-*/
         }
     }
