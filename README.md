@@ -1,7 +1,7 @@
 
 ![Ant Design](https://github.com/christopherstock/AntDesignPrimer/raw/master/_ASSET/readme/150px/logo_ant_design.png)
 
-# Ant Design Web-Frontend Workshop
+# React Hooks and React Context - Ant Design Web-Frontend Workshop 2.0
 
 In diesem Workshop wollen wir die Komponentenbibliothek Ant Design im praktischen Einsatz kennenlernen. Die geniale 
  React-Komponentenbibliothek Ant Design bietet eine vollständige Palette an hochwertigen, responsiven und
@@ -93,7 +93,8 @@ Beim allen Änderungen am Projektcode baut der Webpack Dev Server das Frontend s
 
 ## Aufgaben
 
-Hier sind nun zwei Übungsaufgaben, die es durch Erweiterungen im TypeScript-Code umzusetzen gilt:
+Hier sind nun drei Übungsaufgaben, die es durch Erweiterungen im TypeScript-Code umzusetzen gilt.
+Die entsprechenden Stellen im Code sind mit **TODO WORKSHOP** gekennzeichnet.
 
 #### 1. Anzeige eines Progress-Bars 
 Eine neue Instanz der Komponente **Progress**
@@ -101,8 +102,13 @@ Eine neue Instanz der Komponente **Progress**
  Chuck Norris-Witze der maximal täglich ertragbaren Anzahl von 10 bereits angezeigt wurden.
 
 #### 2. Anzeige einer Notification für leere Seiten
-Zeigen Sie einen **Notification** Dialog mit einer sprechenden Beschreibung und der Severity INFO aus dem Ant Design Framework
- an, wenn der Benutzer einen Menüpunkt auswählt, für den im **Content**-Bereich noch "To be defined .." angezeigt wird.
+Zeigen Sie einen **Notification** Dialog mit einer sprechenden Beschreibung und der Severity INFO aus dem Ant Design
+ Framework an, wenn der Benutzer einen Menüpunkt auswählt, für den im **Content**-Bereich noch "To be defined .."
+ angezeigt wird.
+
+#### 3. Durchführung eines Refactorings
+Extrahieren Sie den Lambda in der Methode `RandomJoke#render()` im Attribut `renderItem` der Komponente `antd.List` in
+ eine separate, nicht-statische Methode.
 
 <hr>
 

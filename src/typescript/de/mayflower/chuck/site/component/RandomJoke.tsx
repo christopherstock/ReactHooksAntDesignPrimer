@@ -74,7 +74,7 @@
         {
             chuck.Debug.react.log( 'RandomJoke.render() being invoked' );
 
-            // TODO show a Progress bar with maximum sustainable 'Chuck Norris Jokes per day' count
+            // TODO WORKSHOP show a Progress bar with maximum sustainable 'Chuck Norris Jokes per day' count
             return <div>
 
                 <antd.Button
@@ -93,7 +93,7 @@
                         dataSource={ this.state.jokes }
                         renderItem={
 
-                            // TODO extract to method .createJokeLine()
+                            // TODO WORKSHOP extract to method .createJokeLine()
                             ( item:chuck.RandomJokeResponse, index:number ) :JSX.Element => {
 
                                 const id   :number = ( index + 1 );
