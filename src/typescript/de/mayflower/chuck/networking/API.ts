@@ -7,6 +7,8 @@
     *******************************************************************************************************************/
     export class API
     {
+        // TODO handle abortSignal
+
         /** ************************************************************************************************************
         *   Requests a random joke.
         *
@@ -21,6 +23,7 @@
         )
         : void
         {
+            // TODO use Moxios!
             if ( Setting.DEBUG_MOCK_ALL_REQUESTS )
             {
                 window.setTimeout(
@@ -34,6 +37,7 @@
 
             // perform request via Axios API
             Axios.get(
+                // TODO set BASE-API-URL to global Axios context etc!
                 Setting.BASE_API_URL + 'jokes/random'
             ).then(
                 ( response:AxiosResponse<RandomJokeResponse> ) :void => {
