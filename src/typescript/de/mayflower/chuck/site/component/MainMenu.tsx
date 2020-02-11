@@ -1,11 +1,12 @@
 
-    import * as React      from 'react';
-    import * as antd       from 'antd';
-    import { SelectParam } from 'antd/lib/menu';
-    import * as chuck      from '../..';
+    import * as React             from 'react';
+    // TODO RENAME!
+    import { Layout, Menu as AntMenu, Icon } from 'antd';
+    import { SelectParam }        from 'antd/lib/menu';
+    import * as chuck             from '../..';
 
     /** ****************************************************************************************************************
-    *   React properties for the Menu component.
+    *   React properties for the MainMenu component.
     *******************************************************************************************************************/
     export interface MenuProps
     {
@@ -16,7 +17,7 @@
     /** ****************************************************************************************************************
     *   The react component that represents the site menu.
     *******************************************************************************************************************/
-    export class Menu extends React.Component<chuck.MenuProps, any>
+    export class MainMenu extends React.Component<chuck.MenuProps, any>
     {
         /** ************************************************************************************************************
         *   Being invoked every time this component renders.
@@ -25,9 +26,9 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            chuck.Debug.react.log( 'Menu.render() being invoked' );
+            chuck.Debug.react.log( 'MainMenu.render() being invoked' );
 
-            return <antd.Layout.Sider
+            return <Layout.Sider
                     breakpoint="lg"
                     collapsedWidth="0"
                     theme="dark"
@@ -40,7 +41,7 @@
                     className="logo"
                 />
 
-                <antd.Menu
+                <AntMenu
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={ [ chuck.MenuItem.RANDOM_JOKE ] }
@@ -51,43 +52,43 @@
                     }
                 >
 
-                    <antd.Menu.Item key={ chuck.MenuItem.RANDOM_JOKE }>
-                        <antd.Icon type="user" />
+                    <AntMenu.Item key={ chuck.MenuItem.RANDOM_JOKE }>
+                        <Icon type="user" />
                         <span>{ chuck.MenuItem.RANDOM_JOKE }</span>
-                    </antd.Menu.Item>
+                    </AntMenu.Item>
 
-                    <antd.Menu.Item key={ chuck.MenuItem.DOWNLOAD }>
-                        <antd.Icon type="video-camera" />
+                    <AntMenu.Item key={ chuck.MenuItem.DOWNLOAD }>
+                        <Icon type="video-camera" />
                         <span>{ chuck.MenuItem.DOWNLOAD }</span>
-                    </antd.Menu.Item>
+                    </AntMenu.Item>
 
-                    <antd.Menu.Item key={ chuck.MenuItem.ABOUT }>
-                        <antd.Icon type="upload" />
+                    <AntMenu.Item key={ chuck.MenuItem.ABOUT }>
+                        <Icon type="upload" />
                         <span>{ chuck.MenuItem.ABOUT }</span>
-                    </antd.Menu.Item>
+                    </AntMenu.Item>
 
-                    <antd.Menu.Item key={ chuck.MenuItem.GO_PREMIUM }>
-                        <antd.Icon type="user" />
+                    <AntMenu.Item key={ chuck.MenuItem.GO_PREMIUM }>
+                        <Icon type="user" />
                         <span>{ chuck.MenuItem.GO_PREMIUM }</span>
-                    </antd.Menu.Item>
+                    </AntMenu.Item>
 
-                    <antd.Menu.SubMenu
+                    <AntMenu.SubMenu
                         key={ chuck.MenuItem.EXTENDED }
                         title={
                         <span>
-                        <antd.Icon type="appstore" />
+                        <Icon type="appstore" />
                         <span>{ chuck.MenuItem.EXTENDED }</span>
                         </span>
                     }>
 
-                        <antd.Menu.Item key={ chuck.MenuItem.LEGAL   }>{ chuck.MenuItem.LEGAL   }</antd.Menu.Item>
+                        <AntMenu.Item key={ chuck.MenuItem.LEGAL   }>{ chuck.MenuItem.LEGAL   }</AntMenu.Item>
 
-                        <antd.Menu.Item key={ chuck.MenuItem.IMPRINT }>{ chuck.MenuItem.IMPRINT }</antd.Menu.Item>
+                        <AntMenu.Item key={ chuck.MenuItem.IMPRINT }>{ chuck.MenuItem.IMPRINT }</AntMenu.Item>
 
-                    </antd.Menu.SubMenu>
+                    </AntMenu.SubMenu>
 
-                </antd.Menu>
+                </AntMenu>
 
-            </antd.Layout.Sider>;
+            </Layout.Sider>;
         }
     }

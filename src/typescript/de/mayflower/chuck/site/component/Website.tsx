@@ -1,8 +1,8 @@
 
     import * as React        from 'react';
-    import * as antd         from 'antd';
+    import { Layout }        from 'antd';
     import * as chuck        from '../..';
-    import { Menu, Content } from '../..';
+    import { MainMenu, Content } from '../..';
 
     /** ****************************************************************************************************************
     *   The React state for the Website component.
@@ -41,33 +41,33 @@
         {
             chuck.Debug.react.log( 'Website.render() being invoked' );
 
-            return <antd.Layout>
+            return <Layout>
 
-                <Menu
+                <MainMenu
                     onChangeMenu={ ( key:chuck.MenuItem ) :void => { this.onChangeMenu( key ); } }
                 />
 
-                <antd.Layout>
+                <Layout>
 
-                    <antd.Layout.Header
+                    <Layout.Header
                         className="header"
                     >
                         { chuck.Setting.TITLE }
-                    </antd.Layout.Header>
+                    </Layout.Header>
 
                     <Content
                         currentSite={ this.state.currentMenuItem }
                     />
 
-                    <antd.Layout.Footer
+                    <Layout.Footer
                         className="footer"
                     >
                         { chuck.Setting.COPYRIGHT }
-                    </antd.Layout.Footer>
+                    </Layout.Footer>
 
-                </antd.Layout>
+                </Layout>
 
-            </antd.Layout>;
+            </Layout>;
         }
 
         /** ************************************************************************************************************

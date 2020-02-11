@@ -12,7 +12,7 @@
     export * from './site/MenuItem';
 
     export * from './site/component/Content';
-    export * from './site/component/Menu';
+    export * from './site/component/MainMenu';
     export * from './site/component/RandomJoke';
     export * from './site/component/Website';
 

@@ -4,18 +4,18 @@
     *******************************************************************************************************************/
     export enum MenuItem
     {
-        /** Menu item 'Random Joke'. */
+        /** MainMenu item 'Random Joke'. */
         RANDOM_JOKE  = 'Random Joke',
-        /** Menu item 'About'. */
+        /** MainMenu item 'About'. */
         ABOUT        = 'About',
-        /** Menu item 'Download'. */
+        /** MainMenu item 'Download'. */
         DOWNLOAD     = 'Download',
-        /** Menu item 'Go Premium'. */
+        /** MainMenu item 'Go Premium'. */
         GO_PREMIUM   = 'Go Premium',
-        /** Menu item 'Extended'. */
+        /** MainMenu item 'Extended'. */
         EXTENDED     = 'Extended',
-        /** Menu item 'Legal'. */
+        /** MainMenu item 'Legal'. */
         LEGAL        = 'Legal',
-        /** Menu item 'Imprint'. */
+        /** MainMenu item 'Imprint'. */
         IMPRINT      = 'Imprint',
     }

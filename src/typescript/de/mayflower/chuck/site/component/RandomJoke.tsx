@@ -1,7 +1,7 @@
 
-    import * as React from 'react';
-    import * as antd  from 'antd';
-    import * as chuck from '../..';
+    import { Button, Divider, List } from 'antd';
+    import * as React                from 'react';
+    import * as chuck                from '../..';
 
     /** ****************************************************************************************************************
     *   The React state for the RandomJoke component.
@@ -77,19 +77,19 @@
             // TODO WORKSHOP show a Progress bar with maximum sustainable 'Chuck Norris Jokes per day' count
             return <div>
 
-                <antd.Button
+                <Button
                     type="primary"
                     onClick={ ( me: React.MouseEvent ) :void => { this.onClickJokeButton(); } }
                     loading={  this.state.requestInProgress }
                 >
                     Request a Random Joke
-                </antd.Button>
+                </Button>
 
-                <antd.Divider />
+                <Divider />
 
                 {
                     this.state.jokes.length > 0
-                    ? <antd.List
+                    ? <List
                         dataSource={ this.state.jokes }
                         renderItem={
 
@@ -100,9 +100,9 @@
                                 const fact :string = item.value.joke.replace( /&quot;/g, '"' );
 
                                 return (
-                                    <antd.List.Item>
+                                    <List.Item>
                                         { id }: { fact }
-                                    </antd.List.Item>
+                                    </List.Item>
                                 );
                             }
                         }
@@ -143,10 +143,10 @@
 
             // submit a new search
             chuck.API.getRandomJoke(
-                ( data:chuck.RandomJokeResponse ) => {
+                ( data:chuck.RandomJokeResponse ) :void => {
                     this.onRandomJokeResponse( data );
                 },
-                ( error:Error ) => {
+                ( error:Error ) :void => {
                     this.onRandomJokeError( error );
                 },
                 this.abortController.signal

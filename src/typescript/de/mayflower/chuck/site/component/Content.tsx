@@ -1,5 +1,5 @@
 
-    import * as antd      from 'antd';
+    import { Layout }     from 'antd';
     import * as React     from 'react';
     import * as chuck     from '../..';
     import { RandomJoke } from '../..';
@@ -27,7 +27,7 @@
         {
             chuck.Debug.react.log( 'Content.render() being invoked' );
 
-            return <antd.Layout.Content
+            return <Layout.Content
                 className="content"
             >
 
@@ -35,7 +35,7 @@
                     { this.createContent() }
                 </div>
 
-            </antd.Layout.Content>;
+            </Layout.Content>;
         }
 
         /** ************************************************************************************************************
