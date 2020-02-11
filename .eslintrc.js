@@ -18,8 +18,13 @@ module.exports = {
         '@typescript-eslint/typedef': [
             "error",
             {
-                "arrowParameter": true,
-                "variableDeclaration": true
+                arrayDestructuring: true,
+                arrowParameter: true,
+                memberVariableDeclaration: true,
+                objectDestructuring: true,
+                parameter: true,
+                propertyDeclaration: true,
+                variableDeclaration: true
             }
         ],
         '@typescript-eslint/explicit-function-return-type': 'error',

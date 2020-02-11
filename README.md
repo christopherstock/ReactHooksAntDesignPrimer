@@ -20,16 +20,16 @@ Zum Bauen unseres Web-Frontends nutzen wir den Paketmanager npm. Mit diesem kön
 
 Insgesamt kommen die folgenden Technologien zum Einsatz:
 
-- Ant Design 3.1
-- TypeScript 3.4.5
-- Webpack 4.40
-- React 16.2
+- Ant Design 3.26.9
+- TypeScript 3.7.5
+- Webpack 4.41.6
+- React 16.12.0
 - JavaScript Fetch API
-- Less 3.9
-- Jest 24.9
-- TypeDoc 0.14
+- Less 3.11.1
+- Jest 25.1.0
+- TypeDoc 0.16.9
 - ESLint 6.8.0
-- TSLint 5.16
+- TSLint 6.0.0
 
 <hr>
 
