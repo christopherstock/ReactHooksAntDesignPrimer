@@ -5,7 +5,6 @@
 
     export * from './networking/API';
     export * from './networking/Mock';
-    export * from './networking/Networking';
 
     export * from './networking/dto/response/RandomJokeResponse';
 

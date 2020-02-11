@@ -1,10 +1,6 @@
 
-    import { AxiosStatic, AxiosResponse } from 'axios';
-
-    // TODO prune?
-    const axios :AxiosStatic = require( 'axios' ).default;
-
-    import { Networking, Mock, RandomJokeResponse, Setting } from '..';
+    import Axios, { AxiosResponse } from 'axios';
+    import { Mock, RandomJokeResponse, Setting } from '..';
 
     /** ****************************************************************************************************************
     *   Triggers all different API requests.
@@ -37,16 +33,11 @@
             }
 
             // perform request via Axios API
-            axios.get(
-                Setting.BASE_API_URL + 'jokes/random',
-                {
-                    params: {
-                        ID: 12345,
-                    },
-                }
+            Axios.get(
+                Setting.BASE_API_URL + 'jokes/random'
             ).then(
-                ( response:AxiosResponse ) :void => {
-                    const dto :RandomJokeResponse = response.data as RandomJokeResponse;
+                ( response:AxiosResponse<RandomJokeResponse> ) :void => {
+                    const dto :RandomJokeResponse = response.data;
                     onSuccess( dto );
                 }
             ).catch(
