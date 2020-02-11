@@ -1,7 +1,6 @@
 
     import * as React             from 'react';
-    // TODO RENAME!
-    import { Layout, Menu as AntMenu, Icon } from 'antd';
+    import { Layout, Menu, Icon } from 'antd';
     import { SelectParam }        from 'antd/lib/menu';
     import * as chuck             from '../..';
 
@@ -41,7 +40,7 @@
                     className="logo"
                 />
 
-                <AntMenu
+                <Menu
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={ [ chuck.MenuItem.RANDOM_JOKE ] }
@@ -52,27 +51,27 @@
                     }
                 >
 
-                    <AntMenu.Item key={ chuck.MenuItem.RANDOM_JOKE }>
+                    <Menu.Item key={ chuck.MenuItem.RANDOM_JOKE }>
                         <Icon type="user" />
                         <span>{ chuck.MenuItem.RANDOM_JOKE }</span>
-                    </AntMenu.Item>
+                    </Menu.Item>
 
-                    <AntMenu.Item key={ chuck.MenuItem.DOWNLOAD }>
+                    <Menu.Item key={ chuck.MenuItem.DOWNLOAD }>
                         <Icon type="video-camera" />
                         <span>{ chuck.MenuItem.DOWNLOAD }</span>
-                    </AntMenu.Item>
+                    </Menu.Item>
 
-                    <AntMenu.Item key={ chuck.MenuItem.ABOUT }>
+                    <Menu.Item key={ chuck.MenuItem.ABOUT }>
                         <Icon type="upload" />
                         <span>{ chuck.MenuItem.ABOUT }</span>
-                    </AntMenu.Item>
+                    </Menu.Item>
 
-                    <AntMenu.Item key={ chuck.MenuItem.GO_PREMIUM }>
+                    <Menu.Item key={ chuck.MenuItem.GO_PREMIUM }>
                         <Icon type="user" />
                         <span>{ chuck.MenuItem.GO_PREMIUM }</span>
-                    </AntMenu.Item>
+                    </Menu.Item>
 
-                    <AntMenu.SubMenu
+                    <Menu.SubMenu
                         key={ chuck.MenuItem.EXTENDED }
                         title={
                         <span>
@@ -81,13 +80,13 @@
                         </span>
                     }>
 
-                        <AntMenu.Item key={ chuck.MenuItem.LEGAL   }>{ chuck.MenuItem.LEGAL   }</AntMenu.Item>
+                        <Menu.Item key={ chuck.MenuItem.LEGAL   }>{ chuck.MenuItem.LEGAL   }</Menu.Item>
 
-                        <AntMenu.Item key={ chuck.MenuItem.IMPRINT }>{ chuck.MenuItem.IMPRINT }</AntMenu.Item>
+                        <Menu.Item key={ chuck.MenuItem.IMPRINT }>{ chuck.MenuItem.IMPRINT }</Menu.Item>
 
-                    </AntMenu.SubMenu>
+                    </Menu.SubMenu>
 
-                </AntMenu>
+                </Menu>
 
             </Layout.Sider>;
         }
