@@ -1,7 +1,7 @@
 
-    import { Button, Divider, List } from 'antd';
-    import * as React                from 'react';
-    import * as chuck                from '../..';
+    import { Button, Divider, List }          from 'antd';
+    import * as React                         from 'react';
+    import { Debug, API, RandomJokeResponse } from '../..';
 
     /** ****************************************************************************************************************
     *   The React state for the RandomJoke component.
@@ -12,13 +12,13 @@
         requestInProgress :boolean;
 
         /** The search results from the last search response. */
-        jokes             :chuck.RandomJokeResponse[];
+        jokes             :RandomJokeResponse[];
     }
 
     /** ****************************************************************************************************************
     *   The react component that represents the RandomJoke main content page.
     *******************************************************************************************************************/
-    export class RandomJoke extends React.Component<any, chuck.RandomJokeState>
+    export class RandomJoke extends React.Component<any, RandomJokeState>
     {
         /** This AbortController can be used to cancel the 'RandomJoke' API-Response when the component is unmounted. */
         private             abortController             :AbortController                        = null;
@@ -43,7 +43,7 @@
         ***************************************************************************************************************/
         public componentDidMount() : void
         {
-            chuck.Debug.react.log( 'RandomJoke.componentDidMount() being invoked' );
+            Debug.react.log( 'RandomJoke.componentDidMount() being invoked' );
 
             this.requestRandomJoke();
         }
@@ -53,7 +53,7 @@
         ***************************************************************************************************************/
         public componentWillUnmount() : void
         {
-            chuck.Debug.react.log( 'RandomJoke.componentWillUnmount() being invoked' );
+            Debug.react.log( 'RandomJoke.componentWillUnmount() being invoked' );
 
             // abort pending RandomJoke-Request, if existent
             if ( this.abortController !== null )
@@ -61,7 +61,7 @@
                 this.abortController.abort();
                 this.abortController = null;
 
-                chuck.Debug.network.log( ' Pending RandomJoke-Request has been CANCELED' );
+                Debug.network.log( ' Pending RandomJoke-Request has been CANCELED' );
             }
         }
 
@@ -72,7 +72,7 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            chuck.Debug.react.log( 'RandomJoke.render() being invoked' );
+            Debug.react.log( 'RandomJoke.render() being invoked' );
 
             // TODO WORKSHOP show a Progress bar with maximum sustainable 'Chuck Norris Jokes per day' count
             return <div>
@@ -94,7 +94,7 @@
                         renderItem={
 
                             // TODO WORKSHOP extract to method .createJokeLine()
-                            ( item:chuck.RandomJokeResponse, index:number ) :JSX.Element => {
+                            ( item:RandomJokeResponse, index:number ) :JSX.Element => {
 
                                 const id   :number = ( index + 1 );
                                 const fact :string = item.value.joke.replace( /&quot;/g, '"' );
@@ -118,7 +118,7 @@
         ***************************************************************************************************************/
         private onClickJokeButton() : void
         {
-            chuck.Debug.major.log( 'Button "Get a Joke" clicked.' );
+            Debug.major.log( 'Button "Get a Joke" clicked.' );
 
             this.requestRandomJoke();
         }
@@ -128,7 +128,7 @@
         ***************************************************************************************************************/
         private requestRandomJoke() : void
         {
-            chuck.Debug.major.log( 'requestRandomJoke() being invoked.' );
+            Debug.major.log( 'requestRandomJoke() being invoked.' );
 
             this.setState(
                 {
@@ -142,8 +142,8 @@
             this.abortController = new AbortController();
 
             // submit a new search
-            chuck.API.getRandomJoke(
-                ( data:chuck.RandomJokeResponse ) :void => {
+            API.getRandomJoke(
+                ( data:RandomJokeResponse ) :void => {
                     this.onRandomJokeResponse( data );
                 },
                 ( error:Error ) :void => {
@@ -158,14 +158,14 @@
         *
         *   @param joke The received random joke data model.
         ***************************************************************************************************************/
-        private onRandomJokeResponse( joke:chuck.RandomJokeResponse ) : void
+        private onRandomJokeResponse( joke:RandomJokeResponse ) : void
         {
-            chuck.Debug.network.log( 'received random joke:' );
-            chuck.Debug.network.log( JSON.stringify( joke ) );
+            Debug.network.log( 'received random joke:' );
+            Debug.network.log( JSON.stringify( joke ) );
 
             this.abortController = null;
 
-            const newJokes:chuck.RandomJokeResponse[] = this.state.jokes.splice( 0 );
+            const newJokes:RandomJokeResponse[] = this.state.jokes.splice( 0 );
             newJokes.push( joke );
 
             this.setState(
@@ -183,13 +183,13 @@
         ***************************************************************************************************************/
         private onRandomJokeError( error:Error ) : void
         {
-            chuck.Debug.network.log( 'requesting random joke threw an error:' );
-            chuck.Debug.network.log( error.message );
+            Debug.network.log( 'requesting random joke threw an error:' );
+            Debug.network.log( error.message );
 
             // check if the request has already been canceled
             if ( this.abortController === null )
             {
-                chuck.Debug.network.log( 'The request has already been canceled and the state has been left!' );
+                Debug.network.log( 'The request has already been canceled and the state has been left!' );
             }
             else
             {

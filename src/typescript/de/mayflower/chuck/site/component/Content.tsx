@@ -1,8 +1,7 @@
 
-    import { Layout }     from 'antd';
-    import * as React     from 'react';
-    import * as chuck     from '../..';
-    import { RandomJoke } from '../..';
+    import { Layout }                      from 'antd';
+    import * as React                      from 'react';
+    import { Debug, MenuItem, RandomJoke } from '../..';
 
     /** ****************************************************************************************************************
     *   React properties for the Content component.
@@ -10,13 +9,13 @@
     export interface ContentProps
     {
         /** The current selected content site to display. */
-        currentSite: chuck.MenuItem;
+        currentSite: MenuItem;
     }
 
     /** ****************************************************************************************************************
     *   The react component that represents the content part of the website.
     *******************************************************************************************************************/
-    export class Content extends React.Component<chuck.ContentProps, any>
+    export class Content extends React.Component<ContentProps, any>
     {
         /** ************************************************************************************************************
         *   Being invoked every time this component renders.
@@ -25,7 +24,7 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            chuck.Debug.react.log( 'Content.render() being invoked' );
+            Debug.react.log( 'Content.render() being invoked' );
 
             return <Layout.Content
                 className="content"
@@ -47,7 +46,7 @@
         {
             switch ( this.props.currentSite )
             {
-                case chuck.MenuItem.RANDOM_JOKE:
+                case MenuItem.RANDOM_JOKE:
                 {
                     return <RandomJoke />;
                 }

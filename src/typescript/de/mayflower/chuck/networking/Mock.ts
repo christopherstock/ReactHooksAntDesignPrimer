@@ -1,5 +1,5 @@
 
-    import * as chuck from '..';
+    import { RandomJokeResponse } from '..';
 
     /** ****************************************************************************************************************
     *   Holds mocked response data for offline requests.
@@ -11,7 +11,7 @@
         *
         *   @return Mocked offline response json data.
         ***************************************************************************************************************/
-        public static mockRandomJoke() : chuck.RandomJokeResponse
+        public static mockRandomJoke() : RandomJokeResponse
         {
             return {
                 type: 'success',

@@ -1,5 +1,5 @@
 
-    import * as chuck from '..';
+    import { Setting, StringUtil } from '..';
 
     /** ****************************************************************************************************************
     *   Represents a debug group whose logging can be enabled or disabled.
@@ -34,9 +34,9 @@
         ***************************************************************************************************************/
         public log( msg:string = '' ):void
         {
-            if ( chuck.Setting.DEBUG_MODE && this.debugEnabled )
+            if ( Setting.DEBUG_MODE && this.debugEnabled )
             {
-                const lineToLog:string = ( '[' + chuck.StringUtil.getDateTimeString() + '] ' + msg );
+                const lineToLog:string = ( '[' + StringUtil.getDateTimeString() + '] ' + msg );
 
                 // eslint-disable-next-line no-console
                 console.log( lineToLog );

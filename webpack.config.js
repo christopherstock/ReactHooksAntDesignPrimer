@@ -78,6 +78,9 @@ module.exports = ( env, argv ) => {
 
     if ( argv.mode === 'production' ) {
         config.optimization = {
+            // performs tree-shaking
+            usedExports: true,
+            // minimizes the code
             minimize: true
         };
     }

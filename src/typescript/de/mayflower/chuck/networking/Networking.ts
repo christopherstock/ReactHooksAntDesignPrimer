@@ -1,5 +1,5 @@
 
-    import * as chuck from '..';
+    import { Debug } from '..';
 
     /** ****************************************************************************************************************
     *   Offers network functionality for requesting the backend API.
@@ -32,7 +32,7 @@
         )
         : void
         {
-            chuck.Debug.network.log(
+            Debug.network.log(
                 'Requesting API URL: [' + url + '] '
                 + 'via [' + method + '] '
                 + 'with body [' + JSON.stringify( body ) + ']'
@@ -65,7 +65,7 @@
                         return response.json();
                     }
 
-                    chuck.Debug.network.log( 'Response is NOT okay - HTTP Status [' + String( response.status ) + ']' );
+                    Debug.network.log( 'Response is NOT okay - HTTP Status [' + String( response.status ) + ']' );
 
                     onError( new Error( 'Response is NOT okay - HTTP Status [' + String( response.status ) + ']' ) );
                 }
@@ -79,7 +79,7 @@
                         return;
                     }
 
-                    chuck.Debug.network.log( 'JSON from Response is NULL !? [' + String( json ) + ']' );
+                    Debug.network.log( 'JSON from Response is NULL !? [' + String( json ) + ']' );
 
                     onError( new Error( 'JSON from Response is NULL' ) );
                 }
@@ -87,8 +87,8 @@
             .catch(
                 ( error:Error ) :void => {
 
-                    chuck.Debug.network.log( 'Caught error on connecting to URL [' + url + ']' );
-                    chuck.Debug.network.log( ' Error message is: ' + error.message );
+                    Debug.network.log( 'Caught error on connecting to URL [' + url + ']' );
+                    Debug.network.log( ' Error message is: ' + error.message );
 
                     onError( error );
                 }

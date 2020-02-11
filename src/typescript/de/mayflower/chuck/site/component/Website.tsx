@@ -1,8 +1,7 @@
 
-    import * as React        from 'react';
-    import { Layout }        from 'antd';
-    import * as chuck        from '../..';
-    import { MainMenu, Content } from '../..';
+    import * as React                                      from 'react';
+    import { Layout }                                      from 'antd';
+    import { Content, Debug, MainMenu, MenuItem, Setting } from '../..';
 
     /** ****************************************************************************************************************
     *   The React state for the Website component.
@@ -10,13 +9,13 @@
     export interface WebsiteState
     {
         /** The current selected menu item. */
-        currentMenuItem :chuck.MenuItem;
+        currentMenuItem :MenuItem;
     }
 
     /** ****************************************************************************************************************
     *   The react component that represents the entire website.
     *******************************************************************************************************************/
-    export class Website extends React.Component<any, chuck.WebsiteState>
+    export class Website extends React.Component<any, WebsiteState>
     {
         /** ************************************************************************************************************
         *   Creates a new Website React component.
@@ -28,7 +27,7 @@
             super( props );
 
             this.state = {
-                currentMenuItem: chuck.MenuItem.RANDOM_JOKE,
+                currentMenuItem: MenuItem.RANDOM_JOKE,
             };
         }
 
@@ -39,12 +38,12 @@
         ***************************************************************************************************************/
         public render() : JSX.Element
         {
-            chuck.Debug.react.log( 'Website.render() being invoked' );
+            Debug.react.log( 'Website.render() being invoked' );
 
             return <Layout>
 
                 <MainMenu
-                    onChangeMenu={ ( key:chuck.MenuItem ) :void => { this.onChangeMenu( key ); } }
+                    onChangeMenu={ ( key:MenuItem ) :void => { this.onChangeMenu( key ); } }
                 />
 
                 <Layout>
@@ -52,7 +51,7 @@
                     <Layout.Header
                         className="header"
                     >
-                        { chuck.Setting.TITLE }
+                        { Setting.TITLE }
                     </Layout.Header>
 
                     <Content
@@ -62,7 +61,7 @@
                     <Layout.Footer
                         className="footer"
                     >
-                        { chuck.Setting.COPYRIGHT }
+                        { Setting.COPYRIGHT }
                     </Layout.Footer>
 
                 </Layout>
@@ -76,9 +75,9 @@
         *
         *   @param key The current selected key index in the menu.
         ***************************************************************************************************************/
-        private onChangeMenu( key:chuck.MenuItem ) : void
+        private onChangeMenu( key:MenuItem ) : void
         {
-            chuck.Debug.major.log( 'Website.onChangeMenu to key [' + key + ']' );
+            Debug.major.log( 'Website.onChangeMenu to key [' + key + ']' );
 
             this.setState(
                 {

@@ -1,8 +1,7 @@
 
-    import * as chuck    from '..';
-    import { Website }   from '..';
-    import * as React    from 'react';
-    import * as ReactDOM from 'react-dom';
+    import { Debug, Setting, Website } from '..';
+    import * as React                  from 'react';
+    import { render }                  from 'react-dom';
 
     /** ****************************************************************************************************************
     *   The main class contains the application's point of entry.
@@ -20,21 +19,21 @@
         public static main() : void
         {
             // set website title
-            document.title = chuck.Setting.TITLE;
+            document.title = Setting.TITLE;
 
             // acclaim debug console
-            chuck.Debug.major.log( chuck.Setting.TITLE + ', ' + chuck.Setting.COPYRIGHT );
-            chuck.Debug.major.log();
+            Debug.major.log( Setting.TITLE + ', ' + Setting.COPYRIGHT );
+            Debug.major.log();
 
             // add container div
             const websiteContainer:HTMLDivElement = document.createElement( 'div' );
             document.body.appendChild( websiteContainer );
 
             // create and mount React component 'Website' into container div
-            const website:JSX.Element = <Website />;
+            const websiteComponent:JSX.Element = <Website />;
 
-            ReactDOM.render(
-                website,
+            render(
+                websiteComponent,
                 websiteContainer
             );
         }
