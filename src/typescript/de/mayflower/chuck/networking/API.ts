@@ -15,12 +15,10 @@
         *
         *   @param onSuccess   The callback method to invoke and pass the response data to when the result is available.
         *   @param onError     The callback method to invoke when an error occurred.
-        *   @param abortSignal The abort signal that may cancel this fetch request.
         ***************************************************************************************************************/
         public static getRandomJoke(
             onSuccess   :( json:RandomJokeResponse ) => void,
-            onError     :( error:Error ) => void,
-            abortSignal :AbortSignal
+            onError     :( error:Error ) => void
         )
         : void
         {
@@ -34,6 +32,8 @@
 
             // TODO move to Context
             // TODO invoke uninstall() for axiosInstance on tearing down app
+
+            // create Moxios Request Mock for Axios API
             if ( Setting.DEBUG_MOCK_ALL_REQUESTS )
             {
                 moxios.install( axiosInstance );

@@ -22,9 +22,6 @@
     *******************************************************************************************************************/
     export class RandomJoke extends React.Component<any, RandomJokeState>
     {
-        /** This AbortController can be used to cancel the 'RandomJoke' API-Response when the component is unmounted. */
-        private             abortController             :AbortController                        = null;
-
         /** ************************************************************************************************************
         *   Creates a new Website React component.
         *
@@ -48,23 +45,6 @@
             Debug.react.log( 'RandomJoke.componentDidMount() being invoked' );
 
             this.requestRandomJoke();
-        }
-
-        /** ************************************************************************************************************
-        *   Being invoked when this component did mount.
-        ***************************************************************************************************************/
-        public componentWillUnmount() : void
-        {
-            Debug.react.log( 'RandomJoke.componentWillUnmount() being invoked' );
-
-            // abort pending RandomJoke-Request, if existent
-            if ( this.abortController !== null )
-            {
-                this.abortController.abort();
-                this.abortController = null;
-
-                Debug.network.log( ' Pending RandomJoke-Request has been CANCELED' );
-            }
         }
 
         /** ************************************************************************************************************
@@ -140,9 +120,6 @@
                 }
             );
 
-            // create a new AbortController
-            this.abortController = new AbortController();
-
             // submit a new search
             API.getRandomJoke(
                 ( data:RandomJokeResponse ) :void => {
@@ -150,8 +127,7 @@
                 },
                 ( error:Error ) :void => {
                     this.onRandomJokeError( error );
-                },
-                this.abortController.signal
+                }
             );
         }
 
@@ -164,8 +140,6 @@
         {
             Debug.network.log( 'received random joke:' );
             Debug.network.log( JSON.stringify( joke ) );
-
-            this.abortController = null;
 
             const newJokes:RandomJokeResponse[] = this.state.jokes.splice( 0 );
             newJokes.push( joke );
@@ -188,22 +162,13 @@
             Debug.network.log( 'requesting random joke threw an error:' );
             Debug.network.log( error.message );
 
-            // check if the request has already been canceled
-            if ( this.abortController === null )
-            {
-                Debug.network.log( 'The request has already been canceled and the state has been left!' );
-            }
-            else
-            {
-                this.abortController = null;
+            // state the request as completed
+            this.setState(
+                {
+                    ...this.state,
 
-                this.setState(
-                    {
-                        ...this.state,
-
-                        requestInProgress: false,
-                    }
-                );
-            }
+                    requestInProgress: false,
+                }
+            );
         }
     }
