@@ -1,5 +1,6 @@
 
     import axios, { AxiosResponse, AxiosInstance } from 'axios';
+    import * as moxios from 'moxios';
     import { Mock, RandomJokeResponse, Setting } from '..';
 
     /** ****************************************************************************************************************
@@ -23,18 +24,6 @@
         )
         : void
         {
-            // TODO use Moxios!
-            if ( Setting.DEBUG_MOCK_ALL_REQUESTS )
-            {
-                window.setTimeout(
-                    () => {
-                        onSuccess( Mock.mockRandomJoke() );
-                    },
-                    Setting.DEBUG_MOCK_REQUEST_DELAY
-                );
-                return;
-            }
-
             // create Axios instance
             // TODO perform creation only once! move to React Context!
             const axiosInstance :AxiosInstance = axios.create(
@@ -42,6 +31,19 @@
                     baseURL: Setting.BASE_API_URL,
                 }
             );
+
+            // TODO move to Context
+            // TODO invoke uninstall() for axiosInstance on tearing down app
+            if ( Setting.DEBUG_MOCK_ALL_REQUESTS )
+            {
+                moxios.install( axiosInstance );
+                moxios.stubRequest(
+                    'jokes/random',
+                    {
+                        response: Mock.mockRandomJoke(),
+                    }
+                )
+            }
 
             // perform request via Axios API
             axiosInstance.get(
