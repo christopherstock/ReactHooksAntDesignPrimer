@@ -69,7 +69,9 @@
 
                 <Divider />
 
-                <TestHookComponent />
+                <TestHookComponent
+                    buttonText="My example text"
+                />
 
                 <Divider />
 

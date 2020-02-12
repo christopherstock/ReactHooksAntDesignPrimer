@@ -3,10 +3,18 @@
     import Button     from 'antd/lib/button';
 
     /** ****************************************************************************************************************
+    *   The React properties for the TestHookComponent.
+    *******************************************************************************************************************/
+    interface TestHookComponentProps
+    {
+        buttonText: string;
+    }
+
+    /** ****************************************************************************************************************
     *   Returns the custom React component 'TestDivider'
     *   without specifying a React Component Class.
     *******************************************************************************************************************/
-    export const TestHookComponent : () => JSX.Element = () : JSX.Element =>
+    export const TestHookComponent : ( props:TestHookComponentProps ) => JSX.Element = ( props:TestHookComponentProps ) : JSX.Element =>
     {
         // create new state variable 'count' with setter 'setCount'
         const [ count, setCount ] :[number, React.Dispatch<React.SetStateAction<number>>] = React.useState<number>( 0 );
@@ -20,7 +28,7 @@
                         setCount( count + 1 );
                     }
                 }>
-                This button was clicked [{ count }] times
+                This button was clicked [{ count }] times. { props.buttonText }
             </Button>
 
         </div>;
