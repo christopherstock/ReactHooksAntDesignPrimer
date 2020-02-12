@@ -1,7 +1,7 @@
 
-    import Layout                          from 'antd/lib/layout';
-    import * as React                      from 'react';
-    import { Debug, MenuItem, RandomJoke } from '../..';
+    import Layout                   from 'antd/lib/layout';
+    import * as React               from 'react';
+    import { MenuItem, RandomJoke } from '../..';
 
     /** ****************************************************************************************************************
     *   React properties for the Content component.
@@ -14,50 +14,44 @@
 
     /** ****************************************************************************************************************
     *   The react component that represents the content part of the website.
+    *
+    *   @param props The properties being propagated to this component.
+    *   @return The rendered React Component as an JSX Element.
     *******************************************************************************************************************/
-    export class Content extends React.Component<ContentProps, any>
+    export const Content :( props:ContentProps ) => JSX.Element = ( props:ContentProps ) :JSX.Element =>
     {
-        /** ************************************************************************************************************
-        *   Being invoked every time this component renders.
-        *
-        *   @return The rendered JSX.
-        ***************************************************************************************************************/
-        public render() : JSX.Element
+        return <Layout.Content
+            className="content"
+        >
+
+            <div>
+                { createContent( props ) }
+            </div>
+
+        </Layout.Content>;
+    };
+
+    /** ****************************************************************************************************************
+    *   Creates the different content part for this Content component.
+    *
+    *   @param props The properties being propagated to this component.
+    *   @return The rendered JSX.
+    *******************************************************************************************************************/
+    const createContent :( props:ContentProps ) => JSX.Element = ( props:ContentProps ) :JSX.Element =>
+    {
+        switch ( props.currentSite )
         {
-            Debug.react.log( 'Content.render() being invoked' );
-
-            return <Layout.Content
-                className="content"
-            >
-
-                <div>
-                    { this.createContent() }
-                </div>
-
-            </Layout.Content>;
-        }
-
-        /** ************************************************************************************************************
-        *   Creates the different content part for this Content component.
-        *
-        *   @return The rendered JSX.
-        ***************************************************************************************************************/
-        private createContent() : JSX.Element
-        {
-            switch ( this.props.currentSite )
+            case MenuItem.RANDOM_JOKE:
             {
-                case MenuItem.RANDOM_JOKE:
-                {
-                    return <RandomJoke />;
-                }
+                return <RandomJoke />;
+            }
 
-                default:
-                {
-                    // TODO WORKSHOP show a Notification that this content is subject to change
-                    return <div>
-                        To be defined ..
-                    </div>;
-                }
+            default:
+            {
+                // TODO WORKSHOP show a Notification that this content is subject to change
+                return <div>
+                    To be defined ..
+                </div>;
             }
         }
-    }
+    };

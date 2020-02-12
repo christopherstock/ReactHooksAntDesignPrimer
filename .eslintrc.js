@@ -69,6 +69,7 @@ module.exports = {
         '@typescript-eslint/type-annotation-spacing': 'off',
         '@typescript-eslint/unified-signatures': 'warn',
         '@typescript-eslint/prefer-readonly': 'warn',
+        '@typescript-eslint/no-use-before-define': 'off',
         'arrow-body-style': ['warn', 'always'],
         'arrow-parens': ['warn', 'as-needed'],
         camelcase: 'warn',
