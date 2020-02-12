@@ -6,7 +6,7 @@
     /** ****************************************************************************************************************
     *   The main class contains the application's point of entry.
     *
-    *   TODO Axios Request handling.
+    *   TODO Moxios Request mocking.
     *   TODO React Context.
     *   TODO React Hooks.
     *******************************************************************************************************************/

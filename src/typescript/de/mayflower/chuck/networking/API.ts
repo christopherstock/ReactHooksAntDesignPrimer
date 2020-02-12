@@ -1,5 +1,5 @@
 
-    import Axios, { AxiosResponse } from 'axios';
+    import axios, { AxiosResponse, AxiosInstance } from 'axios';
     import { Mock, RandomJokeResponse, Setting } from '..';
 
     /** ****************************************************************************************************************
@@ -35,10 +35,17 @@
                 return;
             }
 
+            // create Axios instance
+            // TODO perform creation only once! move to React Context!
+            const axiosInstance :AxiosInstance = axios.create(
+                {
+                    baseURL: Setting.BASE_API_URL,
+                }
+            );
+
             // perform request via Axios API
-            Axios.get(
-                // TODO set BASE-API-URL to global Axios context etc!
-                Setting.BASE_API_URL + 'jokes/random'
+            axiosInstance.get(
+                'jokes/random'
             ).then(
                 ( response:AxiosResponse<RandomJokeResponse> ) :void => {
                     const dto :RandomJokeResponse = response.data;
