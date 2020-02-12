@@ -6,133 +6,91 @@
     import { Debug, API, RandomJokeResponse, TestHookComponent } from '../..';
 
     /** ****************************************************************************************************************
-    *   The React state for the RandomJoke component.
-    *******************************************************************************************************************/
-    export interface RandomJokeState
-    {
-        /** Indicates that the search results are currently requested from the server. */
-        requestInProgress :boolean;
-
-        /** The search results from the last search response. */
-        jokes             :RandomJokeResponse[];
-    }
-
-    /** ****************************************************************************************************************
     *   The react component that represents the RandomJoke main content page.
     *******************************************************************************************************************/
-    export class RandomJoke extends React.Component<any, RandomJokeState>
+    export const RandomJoke :() => JSX.Element = () :JSX.Element =>
     {
-        /** ************************************************************************************************************
-        *   Creates a new Website React component.
-        *
-        *   @param props The initial properties to assign to this component.
-        ***************************************************************************************************************/
-        public constructor( props:any )
-        {
-            super( props );
-
-            this.state = {
-                jokes:             [],
-                requestInProgress: false,
-            };
-        }
-
-        /** ************************************************************************************************************
-        *   Being invoked when this component did mount.
-        ***************************************************************************************************************/
+        const [ requestInProgress, setRequestInProgress ] :[boolean,              React.Dispatch<React.SetStateAction<boolean>>]              = React.useState<boolean>(              false );
+        const [ jokes,             setJokes             ] :[RandomJokeResponse[], React.Dispatch<React.SetStateAction<RandomJokeResponse[]>>] = React.useState<RandomJokeResponse[]>( []    );
+/*
+        // TODO replace with React Effects Hooks
         public componentDidMount() : void
         {
             Debug.react.log( 'RandomJoke.componentDidMount() being invoked' );
 
             this.requestRandomJoke();
         }
+*/
+        // TODO WORKSHOP show a Progress bar with maximum sustainable 'Chuck Norris Jokes per day' count
+        return <div>
 
-        /** ************************************************************************************************************
-        *   Being invoked every time this component renders.
-        *
-        *   @return The rendered JSX.
-        ***************************************************************************************************************/
-        public render() : JSX.Element
-        {
-            Debug.react.log( 'RandomJoke.render() being invoked' );
+            <Button
+                type="primary"
+                onClick={ ( me: React.MouseEvent ) :void => { onClickJokeButton(); } }
+                loading={  requestInProgress }
+            >
+                Request a Random Joke
+            </Button>
 
-            // TODO WORKSHOP show a Progress bar with maximum sustainable 'Chuck Norris Jokes per day' count
-            return <div>
+            <Divider />
 
-                <Button
-                    type="primary"
-                    onClick={ ( me: React.MouseEvent ) :void => { this.onClickJokeButton(); } }
-                    loading={  this.state.requestInProgress }
-                >
-                    Request a Random Joke
-                </Button>
+            <TestHookComponent
+                buttonText="My example text"
+            />
 
-                <Divider />
+            <Divider />
 
-                <TestHookComponent
-                    buttonText="My example text"
-                />
+            {
+                jokes.length > 0
+                ? <List
+                    dataSource={ jokes }
+                    renderItem={
 
-                <Divider />
+                        // TODO WORKSHOP extract to method .createJokeLine()
+                        ( item:RandomJokeResponse, index:number ) :JSX.Element => {
 
-                {
-                    this.state.jokes.length > 0
-                    ? <List
-                        dataSource={ this.state.jokes }
-                        renderItem={
+                            const id   :number = ( index + 1 );
+                            const fact :string = item.value.joke.replace( /&quot;/g, '"' );
 
-                            // TODO WORKSHOP extract to method .createJokeLine()
-                            ( item:RandomJokeResponse, index:number ) :JSX.Element => {
-
-                                const id   :number = ( index + 1 );
-                                const fact :string = item.value.joke.replace( /&quot;/g, '"' );
-
-                                return (
-                                    <List.Item>
-                                        { id }: { fact }
-                                    </List.Item>
-                                );
-                            }
+                            return (
+                                <List.Item>
+                                    { id }: { fact }
+                                </List.Item>
+                            );
                         }
-                    />
-                    : null
-                }
+                    }
+                />
+                : null
+            }
 
-            </div>;
-        }
+        </div>;
 
         /** ************************************************************************************************************
         *   Being invoked when the 'Get Random Joke' button is clicked.
         ***************************************************************************************************************/
-        private onClickJokeButton() : void
+        function onClickJokeButton() : void
         {
             Debug.major.log( 'Button "Get a Joke" clicked.' );
 
-            this.requestRandomJoke();
+            requestRandomJoke();
         }
 
         /** ************************************************************************************************************
         *   Requests a new random joke.
         ***************************************************************************************************************/
-        private requestRandomJoke() : void
+        function requestRandomJoke() : void
         {
             Debug.major.log( 'requestRandomJoke() being invoked.' );
 
-            this.setState(
-                {
-                    ...this.state,
-
-                    requestInProgress: true,
-                }
-            );
+            setRequestInProgress( true );
 
             // submit a new search
             API.getRandomJoke(
                 ( data:RandomJokeResponse ) :void => {
-                    this.onRandomJokeResponse( data );
+                    onRandomJokeResponse( data );
                 },
                 ( error:Error ) :void => {
-                    this.onRandomJokeError( error );
+                    onRandomJokeError( error );
                 }
             );
         }
@@ -142,20 +100,24 @@
         *
         *   @param joke The received random joke data model.
         ***************************************************************************************************************/
-        private onRandomJokeResponse( joke:RandomJokeResponse ) : void
+        function onRandomJokeResponse( joke:RandomJokeResponse ) : void
         {
             Debug.network.log( 'received random joke:' );
             Debug.network.log( JSON.stringify( joke ) );
 
-            const newJokes:RandomJokeResponse[] = this.state.jokes.splice( 0 );
+            const newJokes:RandomJokeResponse[] = jokes.splice( 0 );
             newJokes.push( joke );
 
+            setJokes(             newJokes );
+            setRequestInProgress( false    );
+/*
             this.setState(
                 {
                     jokes:             newJokes,
                     requestInProgress: false,
                 }
             );
+*/
         }
 
         /** ************************************************************************************************************
@@ -163,11 +125,13 @@
         *
         *   @param error The error that occurred on requesting the random joke.
         ***************************************************************************************************************/
-        private onRandomJokeError( error:Error ) : void
+        function onRandomJokeError( error:Error ) : void
         {
             Debug.network.log( 'requesting random joke threw an error:' );
             Debug.network.log( error.message );
 
+            setRequestInProgress( false );
+    /*
             // state the request as completed
             this.setState(
                 {
@@ -176,5 +140,6 @@
                     requestInProgress: false,
                 }
             );
+    */
         }
-    }
+    };
