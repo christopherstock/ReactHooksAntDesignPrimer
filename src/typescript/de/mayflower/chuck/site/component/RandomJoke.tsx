@@ -1,9 +1,9 @@
 
-    import Button                             from 'antd/lib/button';
-    import Divider                            from 'antd/lib/divider';
-    import List                               from 'antd/lib/List';
-    import * as React                         from 'react';
-    import { Debug, API, RandomJokeResponse } from '../..';
+    import Button                                          from 'antd/lib/button';
+    import Divider                                         from 'antd/lib/divider';
+    import List                                            from 'antd/lib/List';
+    import * as React                                      from 'react';
+    import { Debug, API, RandomJokeResponse, TestHookComponent } from '../..';
 
     /** ****************************************************************************************************************
     *   The React state for the RandomJoke component.
@@ -66,6 +66,10 @@
                 >
                     Request a Random Joke
                 </Button>
+
+                <Divider />
+
+                <TestHookComponent />
 
                 <Divider />
 

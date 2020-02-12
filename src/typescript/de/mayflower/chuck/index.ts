@@ -13,6 +13,7 @@
     export * from './site/component/Content';
     export * from './site/component/MainMenu';
     export * from './site/component/RandomJoke';
+    export * from './site/component/TestHookComponent';
     export * from './site/component/Website';
 
     export * from './util/StringUtil';
