@@ -1,7 +1,8 @@
 
-    import { Debug, Setting, Website } from '..';
+    import { Debug, MenuItem, Setting, Website } from '..';
     import * as React                  from 'react';
     import { render }                  from 'react-dom';
+    import { SettingsContext } from '../site/context/Settings';
 
     /** ****************************************************************************************************************
     *   The main class contains the application's point of entry.
@@ -30,7 +31,15 @@
             document.body.appendChild( websiteContainer );
 
             // create and mount React component 'Website' into container div
-            const websiteComponent:JSX.Element = <Website />;
+            const websiteComponent:JSX.Element = (
+                <SettingsContext.Provider value={
+                    {
+                        defaultMenuItem: MenuItem.RANDOM_JOKE,
+                    }
+                }>
+                    <Website />
+                </SettingsContext.Provider>
+            );
 
             render(
                 websiteComponent,

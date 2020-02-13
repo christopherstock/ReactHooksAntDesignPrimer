@@ -9,6 +9,6 @@
 
     export const SettingsContext :React.Context<Settings> = React.createContext<Settings>(
         {
-            defaultMenuItem: MenuItem.ABOUT,
+            defaultMenuItem: null,
         }
     );
