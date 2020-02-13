@@ -10,17 +10,29 @@
     *******************************************************************************************************************/
     export const RandomJoke :() => JSX.Element = () :JSX.Element =>
     {
-        const [ requestInProgress, setRequestInProgress ] :[boolean,              React.Dispatch<React.SetStateAction<boolean>>]              = React.useState<boolean>(              false );
-        const [ jokes,             setJokes             ] :[RandomJokeResponse[], React.Dispatch<React.SetStateAction<RandomJokeResponse[]>>] = React.useState<RandomJokeResponse[]>( []    );
-/*
-        // TODO replace with React Effects Hooks
-        public componentDidMount() : void
-        {
-            Debug.react.log( 'RandomJoke.componentDidMount() being invoked' );
+        // use the React State Hook
+        const [
+            requestInProgress,
+            setRequestInProgress,
+        ]
+        : [boolean, React.Dispatch<React.SetStateAction<boolean>>]
+        = React.useState<boolean>( false );
 
-            this.requestRandomJoke();
-        }
-*/
+        const [
+            jokes,
+            setJokes,
+        ]
+        : [RandomJokeResponse[], React.Dispatch<React.SetStateAction<RandomJokeResponse[]>>]
+        = React.useState<RandomJokeResponse[]>( [] );
+
+        // use the React Effect Hook
+        React.useEffect(
+            () => {
+                requestRandomJoke();
+            },
+            []
+        );
+
         // TODO WORKSHOP show a Progress bar with maximum sustainable 'Chuck Norris Jokes per day' count
         return <div>
 

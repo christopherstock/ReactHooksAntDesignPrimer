@@ -9,11 +9,12 @@
     export const Website :() => JSX.Element = () :JSX.Element =>
     {
         // create new state variable 'menuItem' with setter 'setMenuItem'
-        const [ menuItem, setMenuItem ] :[MenuItem, React.Dispatch<React.SetStateAction<MenuItem>>] = React.useState<MenuItem>( MenuItem.RANDOM_JOKE );
+        const [ menuItem, setMenuItem ] :[MenuItem, React.Dispatch<React.SetStateAction<MenuItem>>] = React.useState<MenuItem>( MenuItem.DOWNLOAD );
 
         return <Layout>
 
             <MainMenu
+                initialItem={ menuItem }
                 onChangeMenu={ ( key:MenuItem ) :void => { setMenuItem( key ); } }
             />
 

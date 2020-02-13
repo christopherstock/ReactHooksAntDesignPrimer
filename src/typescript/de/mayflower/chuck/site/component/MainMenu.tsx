@@ -11,6 +11,9 @@
     *******************************************************************************************************************/
     interface MenuProps
     {
+        /** The intial set menu item. */
+        initialItem: MenuItem;
+
         /** Being invoked when the selected menu item changes. */
         onChangeMenu: ( key:MenuItem ) => void;
     }
@@ -36,7 +39,7 @@
             <Menu
                 theme="dark"
                 mode="inline"
-                defaultSelectedKeys={ [ MenuItem.RANDOM_JOKE ] }
+                defaultSelectedKeys={ [ props.initialItem ] }
                 onSelect={
                     ( param:SelectParam ) :void => {
                         props.onChangeMenu( param.key as MenuItem );

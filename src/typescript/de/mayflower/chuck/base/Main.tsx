@@ -6,8 +6,10 @@
     /** ****************************************************************************************************************
     *   The main class contains the application's point of entry.
     *
+    *   TODO useEffect: https://overreacted.io/a-complete-guide-to-useeffect/
+    *   TODO tests: https://testing-library.com/docs/react-testing-library/intro
+    *
     *   TODO React Context.
-    *   TODO React Hooks.
     *******************************************************************************************************************/
     export class Main
     {

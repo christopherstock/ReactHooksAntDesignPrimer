@@ -6,7 +6,7 @@
 
     describe( 'React component Content', () =>
     {
-        const wrapper: Enzyme.ShallowWrapper = Enzyme.shallow(
+        const wrapper: Enzyme.ShallowWrapper<ContentProps> = Enzyme.shallow(
             <Content
                 currentSite={ MenuItem.ABOUT }
             />
@@ -19,11 +19,7 @@
 
         it( 'assign the property "currentSite"', () =>
         {
-
-            console.log( "TEST:" );
-            console.log( wrapper.instance() );
-
-            // TODO needs to be fixed!
+            // replace with React Testing Library
 /*
             const contentComponent :React.Component<ContentProps> = wrapper.instance() as React.Component<ContentProps>;
 
