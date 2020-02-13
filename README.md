@@ -24,12 +24,12 @@ Insgesamt kommen die folgenden Technologien zum Einsatz:
 - TypeScript 3.7.5
 - Webpack 4.41.6
 - React 16.12.0
-- JavaScript Fetch API
+- Axios Http Client 0.19.2
 - Less 3.11.1
 - Jest 25.1.0
 - TypeDoc 0.16.9
 - ESLint 6.8.0
-- TSLint 6.0.0
+- TSLint 6.8.0
 
 <hr>
 
