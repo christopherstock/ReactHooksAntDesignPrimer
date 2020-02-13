@@ -2,7 +2,6 @@
     // eslint-disable-next-line import/no-deprecated
     import './de/mayflower/chuck/css/chuck.less';
 
-    import * as React from 'react';
     import { Main } from './de/mayflower/chuck';
 
     /** ****************************************************************************************************************

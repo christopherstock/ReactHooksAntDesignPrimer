@@ -1,9 +1,9 @@
 
-    import Button                                          from 'antd/lib/button';
-    import Divider                                         from 'antd/lib/divider';
-    import List                                            from 'antd/lib/List';
-    import * as React                                      from 'react';
-    import { Debug, API, RandomJokeResponse, TestHookComponent } from '../..';
+    import Button                             from 'antd/lib/button';
+    import Divider                            from 'antd/lib/divider';
+    import List                               from 'antd/lib/List';
+    import * as React                         from 'react';
+    import { Debug, API, RandomJokeResponse } from '../..';
 
     /** ****************************************************************************************************************
     *   The react component that represents the RandomJoke main content page.
@@ -31,12 +31,6 @@
             >
                 Request a Random Joke
             </Button>
-
-            <Divider />
-
-            <TestHookComponent
-                buttonText="My example text"
-            />
 
             <Divider />
 
@@ -110,14 +104,6 @@
 
             setJokes(             newJokes );
             setRequestInProgress( false    );
-/*
-            this.setState(
-                {
-                    jokes:             newJokes,
-                    requestInProgress: false,
-                }
-            );
-*/
         }
 
         /** ************************************************************************************************************
@@ -131,15 +117,5 @@
             Debug.network.log( error.message );
 
             setRequestInProgress( false );
-    /*
-            // state the request as completed
-            this.setState(
-                {
-                    ...this.state,
-
-                    requestInProgress: false,
-                }
-            );
-    */
         }
     };
