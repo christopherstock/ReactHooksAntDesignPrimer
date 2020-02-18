@@ -78,7 +78,7 @@ Zum Bauen und Betrieben des Web-Frontends kann mit dem folgenden Befehl der Webp
 
 Die gebaute und in den Webpack Dev Server gemountete Frontend Anwendung kann jetzt im Browser eingesehen werden unter:
  
-`http://localhost:5000/`
+`http://localhost:1237/`
 
 Es sollte nun das folgende Frontend im Browser zu sehen sein:
 
